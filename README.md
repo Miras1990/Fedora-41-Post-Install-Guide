@@ -56,6 +56,10 @@ sudo snap refresh
 ```
 
 ## NVIDIA Drivers and Cuda
+* In order for the nvidia driver to work with Secure Boot, you must first install it using Gnome Software.
+* You can check how to do it at this link:
+* `https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#gnome-software-integration`
+
 * The kernel headers and development packages for the currently running kernel can be installed with:
 * `sudo dnf install kernel-devel-matched kernel-headers`
 * Enable the network repository:
