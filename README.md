@@ -17,17 +17,22 @@ Things to do after installing Fedora 41
 
 
 ## Enable Automatic Updates (Optional)
-* sudo dnf install dnf-automatic
-* sudo systemctl enable --now dnf-automatic.timer
-Customize Auto-Update Behavior (Optional):
-* sudo nano /etc/dnf/automatic.conf
-* sudo systemctl restart dnf-automatic.timer
-
+```
+sudo dnf install dnf-automatic
+sudo systemctl enable --now dnf-automatic.timer
+```
+* Customize Auto-Update Behavior (Optional):
+```
+sudo nano /etc/dnf/automatic.conf
+sudo systemctl restart dnf-automatic.timer
+```
 
 ## Reduce the Systemd timeout for services
-* sudo nano /etc/systemd/system.conf
-* DefaultTimeoutStartSec=15s
-* DefaultTimeoutStopSec=15s
+```
+sudo nano /etc/systemd/system.conf
+DefaultTimeoutStartSec=15s
+DefaultTimeoutStopSec=15s
+```
 
 ## Firmware
 * If your system supports firmware update delivery through lvfs, update your device firmware by:
@@ -37,6 +42,7 @@ sudo fwupdmgr get-devices # Lists devices with available updates.
 sudo fwupdmgr get-updates # Fetches list of available updates.
 sudo fwupdmgr update
 ```
+
 ## Flatpak
 * Fedora doesn't include all non-free flatpaks by default. The command below enables access to all the flathub flatpaks. Particularly useful for users of Fedora KDE and other spins since they do not get the "Enable Third Party Repositories" option on initial boot.
 * `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
@@ -112,26 +118,33 @@ sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 * After this enable the OpenH264 Plugin in Firefox's settings.
 
 ## Enable VAAPI in Firefox "about:config"
-* media.ffmpeg.vaapi.enabled  true
-* media.navigator.mediadatadecoder_vpx_enabled  true
-* layers.acceleration.force-enabled true
-* gfx.webrender.enabled true
-* gfx.webrender.all true
-* gfx.x11-egl.force-enabled true
+```
+media.ffmpeg.vaapi.enabled  true
+media.navigator.mediadatadecoder_vpx_enabled  true
+layers.acceleration.force-enabled true
+gfx.webrender.enabled true
+gfx.webrender.all true
+gfx.x11-egl.force-enabled true
+```
 
 ## Microsoft Fonts
-* sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
-* sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+```
+sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
+sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+```
 
 ## Visual Studio Code on Linux
 * Install the key and yum repository by running the following script:
-* sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-* echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+```
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+```
 
 * Then update the package cache and install the package using dnf.
-* sudo dnf check-update
-* sudo dnf install code
-
+```
+sudo dnf check-update
+sudo dnf install code
+```
 
 ## Set Hostname
 * `hostnamectl set-hostname YOUR_HOSTNAME`
@@ -140,15 +153,6 @@ sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 * The tweak below will make the start page the default firefox start page instead of [this](https://fedoraproject.org/start)
 * `sudo rm -f /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js`
 
-## Custom DNS Servers
-* For people that want to setup custom DNS servers for better privacy
-```
-sudo mkdir -p '/etc/systemd/resolved.conf.d' && sudo -e '/etc/systemd/resolved.conf.d/99-dns-over-tls.conf'
-
-[Resolve]
-DNS=1.1.1.2#security.cloudflare-dns.com 1.0.0.2#security.cloudflare-dns.com 2606:4700:4700::1112#security.cloudflare-dns.com 2606:4700:4700::1002#security.cloudflare-dns.com
-DNSOverTLS=yes
-```
 ## Set UTC Time
 * Used to counter time inconsistencies in dual boot systems
 * `sudo timedatectl set-local-rtc '0'`
@@ -174,21 +178,21 @@ DNSOverTLS=yes
 * `sudo rm /etc/xdg/autostart/org.gnome.Software.desktop`
 
 ## Install Intel Thermal Daemon (Thermald) - https://github.com/intel/thermal_daemon
-* sudo dnf install thermald
+* `sudo dnf install thermald`
 
 ## Enable Trim Support
-* sudo systemctl enable fstrim.timer
-* sudo systemctl start fstrim.timer
+* `sudo systemctl enable fstrim.timer`
+* `sudo systemctl start fstrim.timer`
 
 ## GNOME volume step adjustment
 # show actual setting
-* gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
+* `gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step`
 
 # set new volume-step
-* gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1
+* `gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1`
 
 # check if setting is applied
-* gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
+* `gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step`
 
 
 ## Gnome Extensions
