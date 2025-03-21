@@ -70,9 +70,9 @@ sudo snap refresh
 * `sudo dnf install nvidia-open`
 * Proprietary Kernel Modules:
 * `sudo dnf install cuda-drivers`
-
 * Wait for atleast 5 mins before rebooting, to let the kernel module get built.
 * Reboot
+
 
 ## Intel(R) Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver
 * https://github.com/intel/compute-runtime
@@ -80,16 +80,6 @@ sudo snap refresh
 sudo dnf install intel-compute-runtime intel-level-zero libmfx intel-ocloc intel-opencl libva-utils
 ```
 
-## ~~Battery Life (Deprecated)~~
-* ~~Follow this if you have a Laptop and are facing sub optimal battery backup.~~
-* ~~power-profiles-daemon which come pre-configured on fedora works well on a great majority of systems but still in case you're facing sub-optimal battery backup you try installing tlp by:~~
-* ~~`sudo dnf install tlp tlp-rdw`~~
-* ~~and mask power-profiles-daemon by:~~
-* ~~`sudo systemctl mask power-profiles-daemon`~~
-* ~~Also install powertop by:~~
-* ~~`sudo dnf install powertop`~~
-* ~~`sudo powertop --auto-tune`~~
-* Edit: Fedora comes preinstalled with [Tuned](https://fedoraproject.org/wiki/Changes/TunedAsTheDefaultPowerProfileManagementDaemon) which works well on its own now and all the aforementioned changes are now unnecessary. Just follow [HW video acceleration](https://github.com/devangshekhawat/Fedora-40-Post-Install-Guide/blob/main/README.md#hw-video-acceleration) for better battery backup. 
 
 ## Media Codecs
 * Install these to get proper multimedia playback.
