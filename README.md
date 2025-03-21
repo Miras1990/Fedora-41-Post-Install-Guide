@@ -68,6 +68,12 @@ sudo snap refresh
 * `modinfo -F version nvidia` #Check if the kernel module is built.
 * Reboot
 
+## Intel(R) Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver
+* https://github.com/intel/compute-runtime
+```
+sudo dnf install intel-compute-runtime intel-level-zero libmfx intel-ocloc intel-opencl libva-utils
+```
+
 ## ~~Battery Life (Deprecated)~~
 * ~~Follow this if you have a Laptop and are facing sub optimal battery backup.~~
 * ~~power-profiles-daemon which come pre-configured on fedora works well on a great majority of systems but still in case you're facing sub-optimal battery backup you try installing tlp by:~~
