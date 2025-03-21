@@ -42,10 +42,10 @@ sudo fwupdmgr update
 * `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
 
 ## Snap 
-sudo dnf install snapd
-sudo ln -s /var/lib/snapd/snap /snap
-sudo reboot now
-sudo snap refresh
+* sudo dnf install snapd
+* sudo ln -s /var/lib/snapd/snap /snap
+* sudo reboot now
+* sudo snap refresh
 
 ## NVIDIA Drivers
 * Only follow this if you have a NVIDIA gpu. Also, don't follow this if you have a gpu which has dropped support for newer driver releases i.e. anything earlier than nvidia GT/GTX 600, 700, 800, 900, 1000, 1600 and RTX 2000, 3000, 4000 series. Fedora comes preinstalled with NOUVEAU drivers which may or may not work better on those remaining older GPUs. This should be followed by Desktop and Laptop users alike.
@@ -104,31 +104,31 @@ sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 ```
 </details>
 
-### OpenH264 for Firefox
+## OpenH264 for Firefox
 * `sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264`
 * `sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1`
 * After this enable the OpenH264 Plugin in Firefox's settings.
 
-### Enable VAAPI in Firefox "about:config"
-media.ffmpeg.vaapi.enabled  true
-media.navigator.mediadatadecoder_vpx_enabled  true
-layers.acceleration.force-enabled true
-gfx.webrender.enabled true
-gfx.webrender.all true
-gfx.x11-egl.force-enabled true
+## Enable VAAPI in Firefox "about:config"
+* media.ffmpeg.vaapi.enabled  true
+* media.navigator.mediadatadecoder_vpx_enabled  true
+* layers.acceleration.force-enabled true
+* gfx.webrender.enabled true
+* gfx.webrender.all true
+* gfx.x11-egl.force-enabled true
 
-### Microsoft Fonts
-sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
-sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+## Microsoft Fonts
+* sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
+* sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
-### Visual Studio Code on Linux
-# Install the key and yum repository by running the following script:
-sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+## Visual Studio Code on Linux
+* Install the key and yum repository by running the following script:
+* sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+* echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 
-# Then update the package cache and install the package using dnf
-dnf check-update
-sudo dnf install code
+* Then update the package cache and install the package using dnf.
+* sudo dnf check-update
+* sudo dnf install code
 
 
 ## Set Hostname
@@ -171,22 +171,22 @@ DNSOverTLS=yes
 * Gnome software autostarts on boot for some reason, even though it is not required on every boot unless you want it to do updates in the background, this takes at least 100MB of RAM upto 900MB (as reported anecdotically). You can stop it from autostarting by:
 * `sudo rm /etc/xdg/autostart/org.gnome.Software.desktop`
 
-### Install Intel Thermal Daemon (Thermald) - https://github.com/intel/thermal_daemon
-sudo dnf install thermald
+## Install Intel Thermal Daemon (Thermald) - https://github.com/intel/thermal_daemon
+* sudo dnf install thermald
 
-### Enable Trim Support
-sudo systemctl enable fstrim.timer
-sudo systemctl start fstrim.timer
+## Enable Trim Support
+* sudo systemctl enable fstrim.timer
+* sudo systemctl start fstrim.timer
 
 ## GNOME volume step adjustment
 # show actual setting
-gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
+* gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
 
 # set new volume-step
-gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1
+* gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1
 
 # check if setting is applied
-gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
+* gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
 
 
 ## Gnome Extensions
