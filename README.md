@@ -107,6 +107,16 @@ gfx.x11-egl.force-enabled true
 sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
 sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
 
+### Visual Studio Code on Linux
+# Install the key and yum repository by running the following script:
+sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
+echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+
+# Then update the package cache and install the package using dnf
+dnf check-update
+sudo dnf install code
+
+
 ## Set Hostname
 * `hostnamectl set-hostname YOUR_HOSTNAME`
 
@@ -195,41 +205,20 @@ gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
 ```
 Builder
 Blender
-Discord
-
-Endeavour 
-Easyeffects
+Discord 
+Spotify
 Extension Manager
 Flatseal
-Foliate
-Footage
 GIMP
 Gnome Tweaks
-Gradience
 Handbrake
-Iotas
-Joplin
-Khronos
 Krita
-Logseq
 lm_sensors
-Onlyoffice
-Overskride
-Parabolic
-Pcloud
-PDF Arranger
-Planify
-Pika backup 
-Snapshot
-Solanum
-Sound Recorder
-Tangram
 Transmission
-Ulauncher
-Upscaler
-Video Trimmer
-VS Codium
-yt-dlp
+vlc
+darktable
+rawtherapee
+
 ```
   
 ## Theming [Optional]
