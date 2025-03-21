@@ -15,6 +15,20 @@ Things to do after installing Fedora 41
 * `sudo dnf -y update`
 * Reboot
 
+
+## Enable Automatic Updates (Optional)
+* sudo dnf install dnf-automatic
+* sudo systemctl enable --now dnf-automatic.timer
+Customize Auto-Update Behavior (Optional):
+* sudo nano /etc/dnf/automatic.conf
+* sudo systemctl restart dnf-automatic.timer
+
+
+## Reduce the Systemd timeout for services
+* sudo nano /etc/systemd/system.conf
+* DefaultTimeoutStartSec=15s
+* DefaultTimeoutStopSec=15s
+
 ## Firmware
 * If your system supports firmware update delivery through lvfs, update your device firmware by:
 ```
@@ -218,6 +232,10 @@ Transmission
 vlc
 darktable
 rawtherapee
+mc
+bpytop
+inxi
+libreoffice
 
 ```
   
