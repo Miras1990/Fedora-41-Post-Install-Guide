@@ -27,6 +27,12 @@ sudo fwupdmgr update
 * Fedora doesn't include all non-free flatpaks by default. The command below enables access to all the flathub flatpaks. Particularly useful for users of Fedora KDE and other spins since they do not get the "Enable Third Party Repositories" option on initial boot.
 * `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
 
+## Snap 
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo reboot now
+sudo snap refresh
+
 ## NVIDIA Drivers
 * Only follow this if you have a NVIDIA gpu. Also, don't follow this if you have a gpu which has dropped support for newer driver releases i.e. anything earlier than nvidia GT/GTX 600, 700, 800, 900, 1000, 1600 and RTX 2000, 3000, 4000 series. Fedora comes preinstalled with NOUVEAU drivers which may or may not work better on those remaining older GPUs. This should be followed by Desktop and Laptop users alike.
 * Disable Secure Boot.
@@ -89,6 +95,18 @@ sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
 * `sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1`
 * After this enable the OpenH264 Plugin in Firefox's settings.
 
+### Enable VAAPI in Firefox "about:config"
+media.ffmpeg.vaapi.enabled  true
+media.navigator.mediadatadecoder_vpx_enabled  true
+layers.acceleration.force-enabled true
+gfx.webrender.enabled true
+gfx.webrender.all true
+gfx.x11-egl.force-enabled true
+
+### Microsoft Fonts
+sudo dnf install curl cabextract xorg-x11-font-utils fontconfig 
+sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore-fonts-installer-2.6-1.noarch.rpm
+
 ## Set Hostname
 * `hostnamectl set-hostname YOUR_HOSTNAME`
 
@@ -136,6 +154,15 @@ sudo dnf install thermald
 sudo systemctl enable fstrim.timer
 sudo systemctl start fstrim.timer
 
+## GNOME volume step adjustment
+# show actual setting
+gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
+
+# set new volume-step
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1
+
+# check if setting is applied
+gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step
 
 
 ## Gnome Extensions
@@ -166,14 +193,10 @@ sudo systemctl start fstrim.timer
  `sudo dnf install -y unzip p7zip p7zip-plugins unrar`
 * These are Some Packages that I use and would recommend:
 ```
-Amberol
-Blanket
 Builder
-Brave 
 Blender
 Discord
-Drawing
-Deja Dup Backups
+
 Endeavour 
 Easyeffects
 Extension Manager
