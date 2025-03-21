@@ -1,5 +1,5 @@
  # Fedora 41 Post Install Guide
-Things to do after installing Fedora 41
+Things to do after installing Fedora 41 
 
 ## RPM Fusion
 * Fedora has disabled the repositories for a lot of free and non-free .rpm packages by default. Follow this if you want to use non-free software like Steam, Discord and some multimedia codecs etc. As a general rule of thumb it is advised to do this to get access to many mainstream useful programs.
