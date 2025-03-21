@@ -129,6 +129,15 @@ DNSOverTLS=yes
 * Gnome software autostarts on boot for some reason, even though it is not required on every boot unless you want it to do updates in the background, this takes at least 100MB of RAM upto 900MB (as reported anecdotically). You can stop it from autostarting by:
 * `sudo rm /etc/xdg/autostart/org.gnome.Software.desktop`
 
+### Install Intel Thermal Daemon (Thermald) - https://github.com/intel/thermal_daemon
+sudo dnf install thermald
+
+### Enable Trim Support
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+
+
+
 ## Gnome Extensions
 * Don't install these if you are using a different spin of Fedora.
 * Pop Shell - run `sudo dnf install -y gnome-shell-extension-pop-shell xprop` to install it.
