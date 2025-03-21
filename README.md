@@ -55,17 +55,19 @@ sudo reboot now
 sudo snap refresh
 ```
 
-## NVIDIA Drivers
-* Only follow this if you have a NVIDIA gpu. Also, don't follow this if you have a gpu which has dropped support for newer driver releases i.e. anything earlier than nvidia GT/GTX 600, 700, 800, 900, 1000, 1600 and RTX 2000, 3000, 4000 series. Fedora comes preinstalled with NOUVEAU drivers which may or may not work better on those remaining older GPUs. This should be followed by Desktop and Laptop users alike.
-* Disable Secure Boot.
-* `sudo dnf update` #To make sure you're on the latest kernel and then reboot.
-* Enable RPM Fusion Nvidia non-free repository in the app store and install it from there,
-* or alternatively
-* `sudo dnf install akmod-nvidia`
-* Install this if you use applications that can utilise CUDA i.e. Davinci Resolve, Blender etc.
-* `sudo dnf install xorg-x11-drv-nvidia-cuda`
+## NVIDIA Drivers and Cuda
+* The kernel headers and development packages for the currently running kernel can be installed with:
+* `sudo dnf install kernel-devel-matched kernel-headers`
+* Enable the network repository:
+* `sudo dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-$distro.repo`
+* Clean DNF repository cache:
+* `sudo dnf clean expire-cache`
+* Open Kernel Modules
+* `sudo dnf install nvidia-open`
+* Proprietary Kernel Modules:
+* `sudo dnf install cuda-drivers`
+
 * Wait for atleast 5 mins before rebooting, to let the kernel module get built.
-* `modinfo -F version nvidia` #Check if the kernel module is built.
 * Reboot
 
 ## Intel(R) Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver
