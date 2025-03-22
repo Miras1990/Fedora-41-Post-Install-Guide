@@ -255,32 +255,11 @@ libreoffice
 
 ```
   
-## Theming [Optional]
-
-### GTK Themes
-* Don't install these if you are using a different spin of Fedora.
-* https://github.com/lassekongo83/adw-gtk3
-* https://github.com/vinceliuice/Colloid-gtk-theme
-* https://github.com/EliverLara/Nordic
-* https://github.com/vinceliuice/Orchis-theme
-* https://github.com/vinceliuice/Graphite-gtk-theme
-
-### Use themes in Flatpaks
-* `sudo flatpak override --filesystem=$HOME/.themes`
-* `sudo flatpak override --env=GTK_THEME=my-theme` 
-
-### Icon Packs
-* https://github.com/vinceliuice/Tela-icon-theme
-* https://github.com/vinceliuice/Colloid-gtk-theme/tree/main/icon-theme
-
-### Wallpaper
-* https://github.com/manishprivet/dynamic-gnome-wallpapers
-
 ### Firefox Theme
-* Install Firefox Gnome theme by: `curl -s -o- https://raw.githubusercontent.com/rafaelmardojai/firefox-gnome-theme/master/scripts/install-by-curl.sh | bash`
-
-### Starship (terminal theme)
-* Configure starship to make your terminal look good (refer https://starship.rs)
+https://github.com/rafaelmardojai/firefox-gnome-theme
 
 ### Grub Theme
 * https://github.com/vinceliuice/grub2-themes
+
+### Yaru Theme
+https://github.com/ubuntu/yaru
