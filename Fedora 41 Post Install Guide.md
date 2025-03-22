@@ -195,6 +195,15 @@ sudo dnf install code
 # check if setting is applied
 * `gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step`
 
+# Better Linux Disk Caching & Performance with vm.dirty_ratio & vm.dirty_background_ratio
+```
+vm.dirty_background_ratio = 5
+vm.dirty_background_bytes = 0
+vm.dirty_ratio = 10
+vm.dirty_bytes = 0
+vm.dirty_writeback_centisecs = 500
+vm.dirty_expire_centisecs = 3000
+```
 
 ## Gnome Extensions
 * Don't install these if you are using a different spin of Fedora.
