@@ -1,19 +1,22 @@
 # Things to do after installing Fedora 41 
 
-## RPM Fusion
+## Update and Reboot
+* Go into the software center and click on update. Alternatively, you can do:
+```
+sudo dnf refresh
+sudo dnf update
+```
+
+## Enabling the RPM Fusion repositories
 * Fedora has disabled the repositories for a lot of free and non-free .rpm packages by default. Follow this if you want to use non-free software like Steam, Discord and some multimedia codecs etc. As a general rule of thumb it is advised to do this to get access to many mainstream useful programs.
 * If you forgot to enable third party repositories during the initial setup window, enable them by pasting the following into the terminal: 
-* `sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
+```
+sudo dnf install https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm`
+```
 * also while you're at it, install app-stream metadata by
-* `sudo dnf group upgrade core`
-* `sudo dnf4 group update core`
-  
-
-## Update 
-* Go into the software center and click on update. Alternatively, you can do:
-* `sudo dnf -y update`
-* Reboot
-
+```
+sudo dnf group upgrade core
+```
 
 ## Enable Automatic Updates (Optional)
 ```
@@ -26,13 +29,6 @@ sudo nano /etc/dnf/automatic.conf
 sudo systemctl restart dnf-automatic.timer
 ```
 
-## Reduce the Systemd timeout for services
-```
-sudo nano /etc/systemd/system.conf
-DefaultTimeoutStartSec=15s
-DefaultTimeoutStopSec=15s
-```
-
 ## Firmware
 * If your system supports firmware update delivery through lvfs, update your device firmware by:
 ```
@@ -42,43 +38,42 @@ sudo fwupdmgr get-updates # Fetches list of available updates.
 sudo fwupdmgr update
 ```
 
-## Flatpak
-* Fedora doesn't include all non-free flatpaks by default. The command below enables access to all the flathub flatpaks. Particularly useful for users of Fedora KDE and other spins since they do not get the "Enable Third Party Repositories" option on initial boot.
-* `flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo`
-
-## Snap 
-```
-sudo dnf install snapd
-sudo ln -s /var/lib/snapd/snap /snap
-sudo reboot now
-sudo snap refresh
-```
-
 ## NVIDIA Drivers and Cuda
 * In order for the nvidia driver to work with Secure Boot, you must first install it using Gnome Software.
-* You can check how to do it at this link:
-* `https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#gnome-software-integration`
-
+* You can check how to do it at this [link](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#gnome-software-integration)
 * The kernel headers and development packages for the currently running kernel can be installed with:
-* `sudo dnf install kernel-devel-matched kernel-headers`
+```
+sudo dnf install kernel-devel-matched kernel-headers
+```
 * Enable the network repository:
-* `sudo dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-$distro.repo`
+```
+sudo dnf config-manager addrepo --from-repofile=https://developer.download.nvidia.com/compute/cuda/repos/$distro/$arch/cuda-$distro.repo`
+```
 * Clean DNF repository cache:
-* `sudo dnf clean expire-cache`
+```
+sudo dnf clean expire-cache
+```
 * Open Kernel Modules
-* `sudo dnf install nvidia-open`
+```
+sudo dnf install nvidia-open
+```
 * Proprietary Kernel Modules:
-* `sudo dnf install cuda-drivers`
+```
+sudo dnf install cuda-drivers
+```
 * Wait for atleast 5 mins before rebooting, to let the kernel module get built.
 * Reboot
 
 
-## Intel(R) Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver
-* https://github.com/intel/compute-runtime
+## [Intel(R) Graphics Compute Runtime for oneAPI Level Zero and OpenCL(TM) Driver](https://github.com/intel/compute-runtime)
 ```
 sudo dnf install intel-compute-runtime intel-level-zero libmfx intel-ocloc intel-opencl libva-utils
 ```
 
+## Install Intel Thermal Daemon [Thermald](https://github.com/intel/thermal_daemon)
+```
+sudo dnf install thermald
+```
 
 ## Media Codecs
 * Install these to get proper multimedia playback.
@@ -93,39 +88,18 @@ sudo dnf group install -y sound-and-video # Installs useful Sound and Video comp
 * Helps decrease load on the CPU when watching videos online by alloting the rendering to the dGPU/iGPU. Quite helpful in increasing battery backup on laptops.
 
 ### H/W Video Decoding with VA-API 
-* `sudo dnf install ffmpeg-libs libva libva-utils`
-
-<details>
-<summary>Intel</summary>
- 
+```
+sudo dnf install ffmpeg-libs libva libva-utils
+```
 * If you have a recent Intel chipset (5th Gen and above) after installing the packages above., Do:
-* `sudo dnf swap libva-intel-media-driver intel-media-driver --allowerasing`
-* `sudo dnf install libva-intel-driver`
-</details>
-
-<details>
-<summary>AMD</summary>No need to do this for intel integrated graphics. Mesa drivers are for AMD graphics, who lost support for h264/h245 in the fedora repositories in f38 due to legal concerns.
- 
+```
+sudo dnf swap libva-intel-media-driver intel-media-driver --allowerasing
+sudo dnf install libva-intel-driver
+```
 * If you have an AMD chipset, after installing the packages above do:
 ```
 sudo dnf swap mesa-va-drivers mesa-va-drivers-freeworld
 sudo dnf swap mesa-vdpau-drivers mesa-vdpau-drivers-freeworld
-```
-</details>
-
-## OpenH264 for Firefox
-* `sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264`
-* `sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1`
-* After this enable the OpenH264 Plugin in Firefox's settings.
-
-## Enable VAAPI in Firefox "about:config"
-```
-media.ffmpeg.vaapi.enabled  true
-media.navigator.mediadatadecoder_vpx_enabled  true
-layers.acceleration.force-enabled true
-gfx.webrender.enabled true
-gfx.webrender.all true
-gfx.x11-egl.force-enabled true
 ```
 
 ## Microsoft Fonts
@@ -140,63 +114,80 @@ sudo rpm -i https://downloads.sourceforge.net/project/mscorefonts2/rpms/msttcore
 sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
 echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
 ```
-
 * Then update the package cache and install the package using dnf.
 ```
 sudo dnf check-update
 sudo dnf install code
 ```
 
-## Set Hostname
+## Configuring the system and the GNOME graphical environment
+
+### Set Hostname
 * `hostnamectl set-hostname YOUR_HOSTNAME`
 
-## Default Firefox start page 
-* The tweak below will make the start page the default firefox start page instead of [this](https://fedoraproject.org/start)
-* `sudo rm -f /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js`
-
-## Set UTC Time
+### Set UTC Time
 * Used to counter time inconsistencies in dual boot systems
-* `sudo timedatectl set-local-rtc 1`
+```
+sudo timedatectl set-local-rtc 1
+```
 
-## Optimizations
-* The tips below can allow you to squeeze out a little bit more performance from your system. 
+### Default Firefox start page 
+* The tweak below will make the start page the default firefox start page instead of [this](https://fedoraproject.org/start)
+```
+sudo rm -f /usr/lib64/firefox/browser/defaults/preferences/firefox-redhat-default-prefs.js
+```
 
-### Disable Mitigations 
-* Increases performance in multithreaded systems. The more cores you have in your cpu the greater the performance gain. 5-30% performance gain varying upon systems. Do not follow this if you share services and files through your network or are using fedora in a VM. 
-* Modern intel CPUs (above 10th gen) do not gain noticeable performance improvements upon disabling mitigations. Hence, disabling mitigations can present some security risks against various attacks, however, it still _might_ increase the CPU performance of your system.
-* `sudo grubby --update-kernel=ALL --args="mitigations=off"`
+### Enable VAAPI in Firefox "about:config"
+```
+media.ffmpeg.vaapi.enabled  true
+media.navigator.mediadatadecoder_vpx_enabled  true
+layers.acceleration.force-enabled true
+gfx.webrender.enabled true
+gfx.webrender.all true
+gfx.x11-egl.force-enabled true
+```
 
-### Enable nvidia-modeset 
-* Useful if you have a laptop with an Nvidia GPU. Necessary for some PRIME-related interoperability features.
-* `sudo grubby --update-kernel=ALL --args="nvidia-drm.modeset=1"`
+### OpenH264 for Firefox
+```
+sudo dnf install -y openh264 gstreamer1-plugin-openh264 mozilla-openh264
+sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
+```
+* After this enable the OpenH264 Plugin in Firefox's settings.
+
+### Reduce the Systemd timeout for services
+```
+sudo nano /etc/systemd/system.conf
+DefaultTimeoutStartSec=15s
+DefaultTimeoutStopSec=15s
+```
+
+### Enable Support for ntfs-3g and exfat:
+```
+sudo dnf install exfatprogs ntfs-3g
+```
+
+### Enable Trim Support
+```
+sudo systemctl enable fstrim.timer
+sudo systemctl start fstrim.timer
+```
+
+### Install lm-sensors and detect all sensors
+```
+sudo dnf install lm_sensors
+sudo sensors-detect
+```
 
 ### Disable `NetworkManager-wait-online.service`
 * Disabling it can decrease the boot time by at least ~15s-20s:
-* `sudo systemctl disable NetworkManager-wait-online.service`
-
-### Disable Gnome Software from Startup Apps
-* Gnome software autostarts on boot for some reason, even though it is not required on every boot unless you want it to do updates in the background, this takes at least 100MB of RAM upto 900MB (as reported anecdotically). You can stop it from autostarting by:
-* `sudo rm /etc/xdg/autostart/org.gnome.Software.desktop`
-
-## Install Intel Thermal Daemon (Thermald) - https://github.com/intel/thermal_daemon
-* `sudo dnf install thermald`
-
-## Enable Trim Support
-* `sudo systemctl enable fstrim.timer`
-* `sudo systemctl start fstrim.timer`
-
-## GNOME volume step adjustment
-# show actual setting
-* `gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step`
-
-# set new volume-step
-* `gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1`
-
-# check if setting is applied
-* `gsettings get org.gnome.settings-daemon.plugins.media-keys volume-step`
-
-# Better Linux Disk Caching & Performance with vm.dirty_ratio & vm.dirty_background_ratio
 ```
+sudo systemctl disable NetworkManager-wait-online.service
+```
+
+### Better Linux Disk Caching & Performance with vm.dirty_ratio & vm.dirty_background_ratio & Sharply reduce swap inclination
+```
+vm.swappiness = 1
+vm.vfs_cache_pressure = 50
 vm.dirty_background_ratio = 5
 vm.dirty_background_bytes = 0
 vm.dirty_ratio = 10
@@ -205,7 +196,53 @@ vm.dirty_writeback_centisecs = 500
 vm.dirty_expire_centisecs = 3000
 ```
 
-## Gnome Extensions
+### Enable nvidia-modeset 
+* Useful if you have a laptop with an Nvidia GPU. Necessary for some PRIME-related interoperability features.
+```
+sudo grubby --update-kernel=ALL --args="nvidia-drm.modeset=1"
+```
+
+### Disable Gnome Software from Startup Apps
+* Gnome software autostarts on boot for some reason, even though it is not required on every boot unless you want it to do updates in the background, this takes at least 100MB of RAM upto 900MB (as reported anecdotically). You can stop it from autostarting by:
+```
+sudo rm /etc/xdg/autostart/org.gnome.Software.desktop
+```
+
+### Flatpak
+* Fedora doesn't include all non-free flatpaks by default. The command below enables access to all the flathub flatpaks. Particularly useful for users of Fedora KDE and other spins since they do not get the "Enable Third Party Repositories" option on initial boot.
+```
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+```
+
+### Snap 
+```
+sudo dnf install snapd
+sudo ln -s /var/lib/snapd/snap /snap
+sudo reboot now
+sudo snap refresh
+```
+
+### GNOME volume step adjustment
+```
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 1
+```
+
+### Gnome Extensions and Tweaks
+```
+sudo dnf install gnome-tweaks
+flatpak install flathub com.mattjakeman.ExtensionManager
+```
+
+### Firefox Theme
+* https://github.com/rafaelmardojai/firefox-gnome-theme
+
+### Grub Theme
+* https://github.com/vinceliuice/grub2-themes
+
+### Yaru Theme
+* https://github.com/ubuntu/yaru
+
+### Gnome Extensions
 * Don't install these if you are using a different spin of Fedora.
 * Pop Shell - run `sudo dnf install -y gnome-shell-extension-pop-shell xprop` to install it.
 * [Quick Settings Tweaker](https://github.com/qwreey75/quick-settings-tweaks)
@@ -217,22 +254,17 @@ vm.dirty_expire_centisecs = 3000
 * [Logo Menu](https://extensions.gnome.org/extension/4451/logo-menu/)
 * [Space Bar](https://github.com/christopher-l/space-bar)
 
-## Apps [Optional]
-* Packages for Rar and 7z compressed files support:
- `sudo dnf install -y unzip p7zip p7zip-plugins unrar`
-* These are Some Packages that I use and would recommend:
-```
-Builder
+## Apps
+unzip
+p7zip
+p7zip-full
+unrar
 Blender
 Discord 
 Spotify
-Extension Manager
-Flatseal
 GIMP
-Gnome Tweaks
 Handbrake
 Krita
-lm_sensors
 Transmission
 vlc
 darktable
@@ -241,14 +273,4 @@ mc
 bpytop
 inxi
 libreoffice
-
-```
-  
-### Firefox Theme
-https://github.com/rafaelmardojai/firefox-gnome-theme
-
-### Grub Theme
-* https://github.com/vinceliuice/grub2-themes
-
-### Yaru Theme
-https://github.com/ubuntu/yaru
+audacity
