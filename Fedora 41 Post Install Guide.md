@@ -38,7 +38,7 @@ sudo fwupdmgr get-updates # Fetches list of available updates.
 sudo fwupdmgr update
 ```
 
-## [NVIDIA Cuda Toolkit](https://developer.nvidia.com/cuda-downloads?target_os=Linux)
+## [NVIDIA Drivers and Cuda Toolkit](https://developer.nvidia.com/cuda-downloads?target_os=Linux)
 * In order for the nvidia driver to work with Secure Boot, you must first install it using Gnome Software.
 * You can check how to do it at this [link](https://docs.nvidia.com/datacenter/tesla/driver-installation-guide/#gnome-software-integration)
 * The kernel headers and development packages for the currently running kernel can be installed with:
