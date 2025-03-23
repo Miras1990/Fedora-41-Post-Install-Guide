@@ -156,7 +156,7 @@ sudo dnf install code
 
 ## Set UTC Time
 * Used to counter time inconsistencies in dual boot systems
-* `sudo timedatectl set-local-rtc '0'`
+* `sudo timedatectl set-local-rtc 1`
 
 ## Optimizations
 * The tips below can allow you to squeeze out a little bit more performance from your system. 
