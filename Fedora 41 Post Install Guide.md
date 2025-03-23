@@ -30,7 +30,7 @@ sudo systemctl restart dnf-automatic.timer
 ```
 
 ## Firmware
-* If your system supports firmware update delivery through lvfs, update your device firmware by:
+* If your system supports firmware update delivery through [lvfs](https://fwupd.org/), update your device firmware by:
 ```
 sudo fwupdmgr refresh --force
 sudo fwupdmgr get-devices # Lists devices with available updates.
