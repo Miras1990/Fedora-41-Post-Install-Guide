@@ -154,13 +154,6 @@ sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 ```
 * After this enable the OpenH264 Plugin in Firefox's settings.
 
-### Reduce the Systemd timeout for services
-```
-sudo nano /etc/systemd/system.conf
-DefaultTimeoutStartSec=15s
-DefaultTimeoutStopSec=15s
-```
-
 ### Enable Support for ntfs-3g and exfat:
 ```
 sudo dnf install exfatprogs ntfs-3g
@@ -186,8 +179,6 @@ sudo systemctl disable NetworkManager-wait-online.service
 
 ### Better Linux Disk Caching & Performance with vm.dirty_ratio & vm.dirty_background_ratio & Sharply reduce swap inclination
 ```
-vm.swappiness = 1
-vm.vfs_cache_pressure = 50
 vm.dirty_background_ratio = 5
 vm.dirty_background_bytes = 0
 vm.dirty_ratio = 10
