@@ -244,6 +244,7 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 
 ### Yaru Theme
 sudo dnf install gnome-shell-theme-yaru
+sudo dnf install yaru-theme
 
 ### Gnome Extensions
 * Don't install these if you are using a different spin of Fedora.
