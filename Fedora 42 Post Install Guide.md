@@ -120,7 +120,7 @@ sudo dnf check-update
 sudo dnf install code
 ```
 
-## DaVinci Resolve
+## DaVinci Resolve (The program works and detects Intel's integrated graphics)
 ```
 * Installation
 sudo dnf install apr apr-util mesa-libGLU libxcrypt-compat fuse fuse-libs libpango-1.0.so.0
