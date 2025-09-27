@@ -189,6 +189,16 @@ vm.dirty_writeback_centisecs = 500
 vm.dirty_expire_centisecs = 3000
 ```
 
+### Clear RAM memory Cache
+```
+* To free pagecache:
+echo 1 > /proc/sys/vm/drop_caches
+* To free dentries and inodes:
+echo 2 > /proc/sys/vm/drop_caches
+* To free pagecache, dentries and inodes:
+echo 3 > /proc/sys/vm/drop_caches
+```
+
 ### Enable nvidia-modeset 
 * Useful if you have a laptop with an Nvidia GPU. Necessary for some PRIME-related interoperability features.
 ```
@@ -233,7 +243,7 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 * https://github.com/vinceliuice/grub2-themes
 
 ### Yaru Theme
-* https://github.com/ubuntu/yaru
+sudo dnf install gnome-shell-theme-yaru
 
 ### Gnome Extensions
 * Don't install these if you are using a different spin of Fedora.
@@ -248,22 +258,21 @@ flatpak install flathub com.mattjakeman.ExtensionManager
 * [Space Bar](https://github.com/christopher-l/space-bar)
 
 ## Apps
-unzip
-p7zip
-p7zip-full
-unrar
-Blender
-Discord 
-Spotify
-GIMP
-Handbrake
-Krita
-Transmission
-vlc
-darktable
-rawtherapee
-mc
-bpytop
-inxi
-libreoffice
-audacity
+* unzip
+* p7zip
+* unrar
+* Blender
+* Discord 
+* Spotify
+* GIMP
+* Handbrake
+* Krita
+* Transmission
+* VLC
+* Darktable
+* Rawtherapee
+* mc
+* bpytop
+* inxi
+* Libreoffice
+* Audacity
