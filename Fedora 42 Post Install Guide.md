@@ -122,10 +122,18 @@ sudo dnf install code
 
 ## DaVinci Resolve
 ```
+* Installation
 sudo dnf install apr apr-util mesa-libGLU libxcrypt-compat fuse fuse-libs libpango-1.0.so.0
 unzip DaVinci_Resolve_Studio_20.2.1_Linux.zip
 chmod +x ./DaVinci_Resolve_Studio_20.2.1_Linux.run
 sudo SKIP_PACKAGE_CHECK=1 ./DaVinci_Resolve_Studio_20.2.1_Linux.run -i
+
+* Repair (/opt/resolve/bin/resolve: symbol lookup error: /usr/lib/libpango-1.0.so.0: undefined symbol: g_once_init_leave_pointer):
+cd /opt/resolve/libs
+sudo mkdir disabled-libraries
+sudo mv libglib* disabled-libraries
+sudo mv libgio* disabled-libraries
+sudo mv libgmodule* disabled-libraries 
 ```
 
 ## Configuring the system and the GNOME graphical environment
