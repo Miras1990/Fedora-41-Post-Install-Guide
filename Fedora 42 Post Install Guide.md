@@ -120,6 +120,14 @@ sudo dnf check-update
 sudo dnf install code
 ```
 
+## DaVinci Resolve
+```
+sudo dnf install apr apr-util mesa-libGLU libxcrypt-compat fuse fuse-libs
+unzip DaVinci_Resolve_Studio_20.2.1_Linux.zip
+chmod +x ./DaVinci_Resolve_Studio_20.2.1_Linux.run
+sudo SKIP_PACKAGE_CHECK=1 ./DaVinci_Resolve_Studio_20.2.1_Linux.run -i
+```
+
 ## Configuring the system and the GNOME graphical environment
 
 ### Set Hostname
